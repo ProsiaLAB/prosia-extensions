@@ -1723,7 +1723,7 @@ pub mod arrays {
 
 pub mod types {
     use std::iter::Sum;
-    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
+    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
     use ndarray::{Array1, Array2, Array3, Array4, ArrayView1};
     use num_traits::Zero;
@@ -1991,6 +1991,19 @@ pub mod types {
         #[inline]
         fn is_zero(&self) -> bool {
             self.x == 0.0 && self.y == 0.0 && self.z == 0.0
+        }
+    }
+
+    impl Neg for Vec3 {
+        type Output = Vec3;
+
+        #[inline]
+        fn neg(self) -> Vec3 {
+            Vec3 {
+                x: -self.x,
+                y: -self.y,
+                z: -self.z,
+            }
         }
     }
 }
